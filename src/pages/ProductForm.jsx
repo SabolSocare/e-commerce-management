@@ -107,7 +107,7 @@ export default function ProductForm() {
         stock: product.stock?.toString() || '',
       })
     }
-  }, [product, isEditMode])
+  }, [product, isEditMode, form.setFormValues])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -344,6 +344,7 @@ export default function ProductForm() {
                     Product Category
                   </Label>
                   <Select 
+                    key={form.values.category || 'empty'}
                     value={form.values.category} 
                     onValueChange={(value) => form.handleChange('category', value)}
                   >
