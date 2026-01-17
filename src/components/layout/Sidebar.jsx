@@ -80,10 +80,14 @@ export default function Sidebar({ isOpen = false, onClose }) {
           </svg>
         </button>
       {/* Logo */}
-      <div className="h-16 flex items-center px-8 border-b border-blue-600">
-        <div className="flex items-center gap-2">
-          <div className="w-[30px] h-[30px] rounded-full border-[8px] border-white bg-[#4169E1] flex-shrink-0"></div>
-          <span className="text-[20px] font-medium leading-[1.02]">Logo</span>
+      <div className="relative h-16 border-b border-blue-600">
+        <div className="absolute w-[88px] h-[30px] left-[45px] top-[30px]">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute left-0 top-0">
+            <circle cx="15" cy="15" r="11" stroke="white" strokeWidth="8"/>
+          </svg>
+          <span className="absolute w-[48px] h-[24px] left-[40px] top-[6px] font-poppins font-medium text-[20px] leading-[102%] text-white">
+            Logo
+          </span>
         </div>
       </div>
 
