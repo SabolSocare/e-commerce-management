@@ -156,7 +156,7 @@ export default function ProductForm() {
               type="button"
               onClick={handleCancel}
               disabled={mutation.isPending}
-              className="flex items-center justify-center gap-2 w-[99px] h-10 border border-[#858D9D] rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
+              className="flex items-center justify-center gap-2 flex-1 sm:flex-none sm:w-[99px] h-10 border border-[#858D9D] rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_16_4738)">
@@ -176,7 +176,7 @@ export default function ProductForm() {
               type="submit"
               form="product-form"
               disabled={mutation.isPending}
-              className="flex items-center justify-center gap-2 w-[135px] h-10 bg-[#3A5BFF] rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+              className="flex items-center justify-center gap-2 flex-1 sm:flex-none sm:w-[135px] h-10 bg-[#3A5BFF] rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
             >
               {isEditMode ? (
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
