@@ -20,7 +20,7 @@ const getPageTitle = (pathname) => {
   return 'Product'
 }
 
-export default function Header() {
+export default function Header({ onMenuClick }) {
   const location = useLocation()
   const pageTitle = getPageTitle(location.pathname)
 
@@ -29,9 +29,20 @@ export default function Header() {
       {/* topNav */}
       <div className="flex flex-col items-start px-[21px] py-[14px] gap-[10px] w-full h-[60px] bg-[#F9F9FC]  border-b border-[#F1F3F9]">
         {/* navContainer */}
-        <div className="relative w-full h-[32px]">
+        <div className="relative w-full h-[32px] flex items-center">
+          {/* Hamburger Menu Button - Mobile Only */}
+          <button
+            onClick={onMenuClick}
+            className="lg:hidden mr-4 p-2 hover:bg-gray-200 rounded-lg transition-colors"
+            aria-label="Open menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 12h18M3 6h18M3 18h18" stroke="#353535" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          
           {/* Product Title */}
-          <h1 className="absolute left-0 top-[1px] min-w-[79px] h-[30px] font-poppins font-medium text-[20px] leading-[30px] text-[#353535] whitespace-nowrap">
+          <h1 className="hidden lg:block absolute left-0 lg:left-0 top-[1px] min-w-[79px] h-[30px] font-poppins font-medium text-[20px] leading-[30px] text-[#353535] whitespace-nowrap ml-12 lg:ml-0">
             {pageTitle}
           </h1>
 

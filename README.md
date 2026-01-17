@@ -9,7 +9,8 @@ A modern, responsive product management system built with React, TailwindCSS, an
 - ✅ **Edit Product** - Update existing product information
 - ✅ **Delete Product** - Remove products with confirmation
 - ✅ **Search & Filter** - Find products quickly
-- ✅ **Responsive Design** - Works on desktop and tablet screens
+- ✅ **Mobile Responsive** - Fully responsive design for mobile, tablet, and desktop
+- ✅ **Skeleton Loading** - Smooth loading states for better UX
 - ✅ **Modern UI** - Clean, professional interface using Shadcn/ui
 - ✅ **API Integration** - Connected to DummyJSON API
 - ✅ **State Management** - React Query for efficient data fetching
@@ -112,20 +113,22 @@ e-commerce-management/
 ├── src/
 │   ├── components/
 │   │   ├── layout/
-│   │   │   ├── Layout.jsx      # Main layout wrapper
-│   │   │   ├── Sidebar.jsx     # Navigation sidebar
-│   │   │   └── Header.jsx      # Top header
+│   │   │   ├── Layout.jsx      # Main layout wrapper with sidebar toggle
+│   │   │   ├── Sidebar.jsx     # Navigation sidebar with mobile support
+│   │   │   └── Header.jsx      # Top header with hamburger menu
 │   │   └── ui/                 # Shadcn/ui components
 │   │       ├── button.jsx
 │   │       ├── input.jsx
 │   │       ├── select.jsx
 │   │       ├── checkbox.jsx
 │   │       ├── dialog.jsx
+│   │       ├── textarea.jsx
+│   │       ├── label.jsx
+│   │       ├── dropdown-menu.jsx
 │   │       └── ...
 │   ├── pages/
-│   │   ├── ProductList.jsx     # Product listing page
-│   │   ├── AddProduct.jsx      # Add product page
-│   │   ├── EditProduct.jsx     # Edit product page
+│   │   ├── ProductList.jsx     # Product listing page with table
+│   │   ├── ProductForm.jsx     # Unified add/edit product form
 │   │   └── ComingSoon.jsx      # Placeholder page
 │   ├── services/
 │   │   └── api.js              # API service layer
@@ -144,12 +147,21 @@ e-commerce-management/
 
 ## 🎨 Design Implementation
 
-The UI is designed to match the provided Figma design specifications:
+The UI is designed to match modern e-commerce management standards:
 
-- **Sidebar Width:** 209px
-- **Primary Color:** #4169E1 (Royal Blue)
-- **Font:** System default (Roboto-like)
-- **Responsive Breakpoint:** Medium screens (≥768px)
+- **Custom Breakpoints:** 
+  - Mobile: < 475px
+  - XS: 475px
+  - SM: 640px
+  - MD: 768px
+  - LG: 1024px
+- **Primary Color:** #3A5BFF (Blue)
+- **Background:** #F9F9FC (Light Gray)
+- **Text Colors:** #353535 (Dark), #777980 (Gray), #858D9D (Light Gray)
+- **Font:** Poppins
+- **Mobile-First:** Responsive design from mobile to desktop
+- **Sidebar:** Auto-hide on mobile, always visible on desktop
+- **Loading States:** Skeleton loaders for smooth UX
 
 ## 🔗 API Endpoints
 
@@ -171,8 +183,8 @@ The application uses the [DummyJSON API](https://dummyjson.com):
 | `/` | Redirect | Redirects to `/products` |
 | `/dashboard` | ComingSoon | Coming later |
 | `/products` | ProductList | Product listing page |
-| `/products/add` | AddProduct | Add new product |
-| `/products/edit/:id` | EditProduct | Edit existing product |
+| `/products/add` | ProductForm | Add new product |
+| `/products/edit/:id` | ProductForm | Edit existing product |
 | `/orders` | ComingSoon | Coming later |
 | `/customers` | ComingSoon | Coming later |
 | `/reports` | ComingSoon | Coming later |
@@ -187,22 +199,34 @@ The application uses the [DummyJSON API](https://dummyjson.com):
 - **Filters:** Filter by status, category, date
 - **Actions:** Edit and delete products
 - **Export:** Export products data
+- **Horizontal Scroll:** Table scrolls horizontally on mobile devices
+- **Responsive Layout:** Adapts to all screen sizes
 
 ### Add/Edit Product Form
 
+**Unified Form:** Single component handles both add and edit modes with skeleton loading
+
 **Fields:**
 - Product Name (required)
-- Description (optional)
+- Description (optional, textarea)
 - Category (required, dropdown)
-- Base Price (required, numeric)
+- Base Price (required, numeric with $ icon)
 - Discount Percentage (optional, numeric)
 - SKU (required, text)
 - Quantity/Stock (required, numeric)
+
+**Mobile Optimizations:**
+- Reduced padding and spacing on small screens
+- 50/50 button split on mobile
+- Responsive grid layout for inventory fields
+- Form content scrolls independently (no double-scroll)
+- Skeleton loading during data fetch and save operations
 
 **Validation:**
 - All required fields must be filled
 - Numeric fields validated for proper format
 - Real-time error messages
+- Form-level validation before submission
 
 ## 🚀 CI/CD
 
@@ -257,8 +281,37 @@ The project follows these best practices:
 - ✅ **Component Structure:** Reusable and modular components
 - ✅ **State Management:** Efficient data fetching with React Query
 - ✅ **Error Handling:** Proper error states and user feedback
-- ✅ **Responsive Design:** Mobile-first approach
+- ✅ **Responsive Design:** Mobile-first approach with custom breakpoints
 - ✅ **Performance:** Optimized rendering and data caching
+- ✅ **Loading States:** Skeleton loaders for better UX
+- ✅ **Accessibility:** Proper labels and semantic HTML
+- ✅ **Component Composition:** Single ProductForm for add/edit modes
+
+## 🎯 Mobile Responsiveness
+
+### Mobile Features (< 768px)
+- **Sidebar:** Slide-in navigation with backdrop overlay
+- **Header:** Hamburger menu with hidden page title
+- **Product List:** Horizontally scrollable table with fixed column widths
+- **Product Form:**
+  - Reduced padding and spacing
+  - Smaller fonts and buttons
+  - 50/50 button layout
+  - Single-column inventory grid
+  - Independent form scrolling
+  - Full-width category section
+- **Auto-close:** Sidebar closes automatically on navigation
+
+### Desktop Features (≥ 1024px)
+- **Sidebar:** Always visible with 209px width
+- **Header:** Page title visible
+- **Product List:** Full-width table with proper column sizing
+- **Product Form:**
+  - Larger padding and spacing
+  - Two-column layout
+  - Fixed-width buttons (99px, 146px)
+  - Two-column inventory grid
+  - Natural page scrolling
 
 ## 🤝 Contributing
 
@@ -279,8 +332,8 @@ Created by a Senior Frontend Developer as part of the Digital Government Committ
 ## 📞 Contact
 
 For any questions or issues, please contact:
-- Telegram: @ChanvesnaMa
-- Email: talentmgt@dgc.gov.kh
+- Telegram: Socare Sabol(@socare_sabol)
+- Email: sabolsocare1028@gmail.com
 
 ---
 

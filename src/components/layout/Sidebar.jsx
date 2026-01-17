@@ -59,11 +59,26 @@ const navigation = [
   { name: 'Reports', href: '/reports', icon: ReportsIcon },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen = false, onClose }) {
   const location = useLocation()
   
   return (
-    <div className="w-[280px] bg-[#3A5BFF] text-white flex flex-col">
+    <>
+      <div className={cn(
+        "w-[280px] bg-[#3A5BFF] text-white flex flex-col transition-transform duration-300 ease-in-out",
+        "fixed lg:relative inset-y-0 left-0 z-30",
+        isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+      )}>
+        {/* Close button for mobile */}
+        <button
+          onClick={onClose}
+          className="lg:hidden absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-lg transition-colors z-50"
+          aria-label="Close menu"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 5L5 15M5 5l10 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
       {/* Logo */}
       <div className="h-16 relative border-b border-blue-600">
         <div className="absolute left-[45px] top-[30px] w-[88px] h-[30px] flex items-center gap-2">
@@ -92,6 +107,7 @@ export default function Sidebar() {
             <NavLink
               key={item.name}
               to={item.href}
+              onClick={onClose}
               className={cn(
                 'relative flex items-center w-[280px] h-[72px] pl-[45px] text-[14px] font-medium transition-all',
                 isActive ? 'text-white' : 'text-[#C2C0FF]',
@@ -126,5 +142,6 @@ export default function Sidebar() {
         })}
       </nav>
     </div>
+    </>
   )
 }

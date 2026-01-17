@@ -139,23 +139,198 @@ export default function ProductForm() {
 
   if (isLoading && isEditMode) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <div className="text-gray-500">Loading product...</div>
+      <div className="h-full flex flex-col bg-[#F9F9FC] font-sans overflow-hidden lg:overflow-visible animate-pulse">
+        {/* Breadcrumb and Actions Header Skeleton */}
+        <div className="flex-shrink-0 lg:flex-shrink">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-6 lg:px-8 py-3 sm:py-4 gap-2.5 sm:gap-0">
+            {/* Breadcrumbs Skeleton */}
+            <div className="flex items-center gap-1.5">
+              <div className="h-4 w-16 bg-gray-200 rounded"></div>
+              <div className="w-4 h-4 bg-gray-200 rounded"></div>
+              <div className="h-4 w-24 bg-gray-200 rounded"></div>
+            </div>
+
+            {/* Buttons Skeleton */}
+            <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+              <div className="w-[calc(50%-4px)] sm:flex-1 md:flex-none md:min-w-[99px] h-9 bg-gray-200 rounded-lg"></div>
+              <div className="w-[calc(50%-4px)] sm:flex-1 md:flex-none md:min-w-[146px] h-9 bg-gray-200 rounded-lg"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Form Content Skeleton */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="w-full px-3 sm:px-6 lg:px-8 pt-0 pb-4">
+            <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 lg:gap-6">
+              {/* Left Column Skeleton */}
+              <div className="flex-1 flex flex-col gap-3 sm:gap-4 lg:gap-6">
+                {/* General Information Skeleton */}
+                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                  <div className="h-6 w-40 bg-gray-200 rounded"></div>
+                  <div className="space-y-3.5">
+                    <div className="space-y-1">
+                      <div className="h-4 w-28 bg-gray-200 rounded"></div>
+                      <div className="h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-4 w-24 bg-gray-200 rounded"></div>
+                      <div className="h-[156px] bg-gray-200 rounded-lg"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Pricing Skeleton */}
+                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                  <div className="h-6 w-32 bg-gray-200 rounded"></div>
+                  <div className="space-y-3.5">
+                    <div className="space-y-1">
+                      <div className="h-4 w-24 bg-gray-200 rounded"></div>
+                      <div className="h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-4 w-44 bg-gray-200 rounded"></div>
+                      <div className="h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Inventory Skeleton */}
+                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                  <div className="h-6 w-28 bg-gray-200 rounded"></div>
+                  <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-3.5">
+                    <div className="space-y-1">
+                      <div className="h-4 w-12 bg-gray-200 rounded"></div>
+                      <div className="h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-4 w-16 bg-gray-200 rounded"></div>
+                      <div className="h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column Skeleton */}
+              <div className="w-full lg:w-[264px]">
+                {/* Category Skeleton */}
+                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                  <div className="h-6 w-24 bg-gray-200 rounded"></div>
+                  <div className="space-y-1">
+                    <div className="h-4 w-32 bg-gray-200 rounded"></div>
+                    <div className="h-10 bg-gray-200 rounded-lg"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Show skeleton during save/update
+  if (mutation.isPending) {
+    return (
+      <div className="h-full flex flex-col bg-[#F9F9FC] font-sans overflow-hidden lg:overflow-visible animate-pulse">
+        {/* Breadcrumb and Actions Header Skeleton */}
+        <div className="flex-shrink-0 lg:flex-shrink">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-6 lg:px-8 py-3 sm:py-4 gap-2.5 sm:gap-0">
+            {/* Breadcrumbs Skeleton */}
+            <div className="flex items-center gap-1.5">
+              <div className="h-4 w-16 bg-gray-200 rounded"></div>
+              <div className="w-4 h-4 bg-gray-200 rounded"></div>
+              <div className="h-4 w-24 bg-gray-200 rounded"></div>
+            </div>
+
+            {/* Buttons Skeleton */}
+            <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+              <div className="w-[calc(50%-4px)] sm:flex-1 md:flex-none md:min-w-[99px] h-9 bg-gray-200 rounded-lg"></div>
+              <div className="w-[calc(50%-4px)] sm:flex-1 md:flex-none md:min-w-[146px] h-9 bg-gray-200 rounded-lg"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Form Content Skeleton */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="w-full px-3 sm:px-6 lg:px-8 pt-0 pb-4">
+            <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 lg:gap-6">
+              {/* Left Column Skeleton */}
+              <div className="flex-1 flex flex-col gap-3 sm:gap-4 lg:gap-6">
+                {/* General Information Skeleton */}
+                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                  <div className="h-6 w-40 bg-gray-200 rounded"></div>
+                  <div className="space-y-3.5">
+                    <div className="space-y-1">
+                      <div className="h-4 w-28 bg-gray-200 rounded"></div>
+                      <div className="h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-4 w-24 bg-gray-200 rounded"></div>
+                      <div className="h-[156px] bg-gray-200 rounded-lg"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Pricing Skeleton */}
+                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                  <div className="h-6 w-32 bg-gray-200 rounded"></div>
+                  <div className="space-y-3.5">
+                    <div className="space-y-1">
+                      <div className="h-4 w-24 bg-gray-200 rounded"></div>
+                      <div className="h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-4 w-44 bg-gray-200 rounded"></div>
+                      <div className="h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Inventory Skeleton */}
+                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                  <div className="h-6 w-28 bg-gray-200 rounded"></div>
+                  <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-3.5">
+                    <div className="space-y-1">
+                      <div className="h-4 w-12 bg-gray-200 rounded"></div>
+                      <div className="h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-4 w-16 bg-gray-200 rounded"></div>
+                      <div className="h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column Skeleton */}
+              <div className="w-full lg:w-[264px]">
+                {/* Category Skeleton */}
+                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                  <div className="h-6 w-24 bg-gray-200 rounded"></div>
+                  <div className="space-y-1">
+                    <div className="h-4 w-32 bg-gray-200 rounded"></div>
+                    <div className="h-10 bg-gray-200 rounded-lg"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="h-full flex flex-col bg-[#F9F9FC] font-sans">
+    <div className="h-full flex flex-col bg-[#F9F9FC] font-sans overflow-hidden lg:overflow-visible">
       {/* Breadcrumb and Actions Header */}
-      <div>
-        <div className="flex items-center justify-between px-8 py-4">
+      <div className="flex-shrink-0 lg:flex-shrink">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 sm:px-6 lg:px-8 py-3 sm:py-4 gap-2.5 sm:gap-0">
           {/* Breadcrumbs */}
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-1.5 text-[11px] sm:text-sm">
             <span className="font-medium text-[#3A5BFF] cursor-pointer" onClick={() => navigate('/products')}>
               Product
             </span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-4 sm:h-4">
               <path d="M6 11.9193V4.47133C6.00003 4.3395 6.03914 4.21064 6.1124 4.10103C6.18565 3.99142 6.28976 3.906 6.41156 3.85555C6.53336 3.8051 6.66738 3.7919 6.79669 3.81761C6.92599 3.84332 7.04476 3.90679 7.138 4L10.862 7.724C10.987 7.84902 11.0572 8.01856 11.0572 8.19533C11.0572 8.37211 10.987 8.54165 10.862 8.66667L7.138 12.3907C7.04476 12.4839 6.92599 12.5473 6.79669 12.5731C6.66738 12.5988 6.53336 12.5856 6.41156 12.5351C6.28976 12.4847 6.18565 12.3992 6.1124 12.2896C6.03914 12.18 6.00003 12.0512 6 11.9193Z" fill="#C2C6CE"/>
             </svg>
             <span className="font-medium text-[#6E7079]">
@@ -164,15 +339,15 @@ export default function ProductForm() {
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
             <button
               type="button"
               onClick={() => navigate('/products')}
               disabled={mutation.isPending}
+              className="w-[calc(50%-4px)] sm:flex-1 md:flex-none md:min-w-[99px]"
               style={{
                 boxSizing: 'border-box',
-                width: 99,
-                height: 40,
+                height: 36,
                 border: '1px solid #858D9D',
                 borderRadius: 8,
                 display: 'flex',
@@ -187,12 +362,12 @@ export default function ProductForm() {
                 background: 'transparent',
                 position: 'relative',
                 padding: 0,
-                justifyContent: 'flex-start',
+                justifyContent: 'center',
                 cursor: mutation.isPending ? 'not-allowed' : 'pointer',
                 gap: 0
               }}
             >
-              <span style={{position: 'absolute', left: 14, top: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', width: 20, height: 20}}>
+              <span style={{position: 'absolute', display: 'flex', alignItems: 'center', justifyContent: 'center', width: 20, height: 20, left: 14}}>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clipPath="url(#clip0_16_4738)">
                     <path d="M10.9425 9.99999L17.8045 3.13799C17.926 3.01225 17.9932 2.84385 17.9916 2.66905C17.9901 2.49425 17.92 2.32705 17.7964 2.20344C17.6728 2.07984 17.5056 2.00972 17.3308 2.0082C17.156 2.00668 16.9876 2.07388 16.8619 2.19532L9.99986 9.05732L3.13786 2.19532C3.01212 2.07388 2.84372 2.00668 2.66892 2.0082C2.49413 2.00972 2.32692 2.07984 2.20331 2.20344C2.07971 2.32705 2.00959 2.49425 2.00807 2.66905C2.00656 2.84385 2.07375 3.01225 2.19519 3.13799L9.05719 9.99999L2.19519 16.862C2.07021 16.987 2 17.1565 2 17.3333C2 17.5101 2.07021 17.6796 2.19519 17.8047C2.32021 17.9296 2.48975 17.9998 2.66652 17.9998C2.8433 17.9998 3.01284 17.9296 3.13786 17.8047L9.99986 10.9427L16.8619 17.8047C16.9869 17.9296 17.1564 17.9998 17.3332 17.9998C17.51 17.9998 17.6795 17.9296 17.8045 17.8047C17.9295 17.6796 17.9997 17.5101 17.9997 17.3333C17.9997 17.1565 17.9295 16.987 17.8045 16.862L10.9425 9.99999Z" fill="#858D9D"/>
@@ -204,7 +379,7 @@ export default function ProductForm() {
                   </defs>
                 </svg>
               </span>
-              <span style={{position: 'absolute', left: 38, top: 10, width: 51, height: 20, display: 'flex', alignItems: 'center'}}>
+              <span style={{marginLeft: 38, height: 20, display: 'flex', alignItems: 'center'}}>
                 Cancel
               </span>
             </button>
@@ -212,15 +387,15 @@ export default function ProductForm() {
               type="submit"
               form="product-form"
               disabled={mutation.isPending}
+              className="w-[calc(50%-4px)] sm:flex-1 md:flex-none md:min-w-[146px]"
               style={{
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                padding: '10px 14px',
-                gap: 8,
-                width: 146,
-                height: 40,
+                padding: '8px 12px',
+                gap: 6,
+                height: 36,
                 background: '#3A5BFF',
                 borderRadius: 8,
                 fontFamily: 'Poppins, sans-serif',
@@ -263,14 +438,14 @@ export default function ProductForm() {
       </div>
 
       {/* Form Content */}
-      <div className="flex-1">
-        <div className="w-full px-8 pt-0">
-          <form id="product-form" onSubmit={handleSubmit} className="flex gap-6">
+      <div className="flex-1 overflow-y-auto">
+        <div className="w-full px-3 sm:px-6 lg:px-8 pt-0 pb-4">
+          <form id="product-form" onSubmit={handleSubmit} className="flex flex-col lg:flex-row gap-3 sm:gap-4 lg:gap-6">
             {/* Left Column */}
-            <div className="flex-1 flex flex-col gap-6">
+            <div className="flex-1 flex flex-col gap-3 sm:gap-4 lg:gap-6">
               {/* General Information */}
-              <div className="bg-white rounded-xl p-6 flex flex-col items-center gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
-                <h2 className="text-lg font-medium text-[#353535] self-stretch" style={{ letterSpacing: '0.01em' }}>
+              <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col items-center gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                <h2 className="text-base sm:text-lg font-medium text-[#353535] self-stretch" style={{ letterSpacing: '0.01em' }}>
                   General Information
                 </h2>
                 
@@ -320,8 +495,8 @@ export default function ProductForm() {
               </div>
 
               {/* Pricing */}
-              <div className="bg-white rounded-xl p-6 flex flex-col items-center gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
-                <h2 className="text-lg font-medium text-[#353535] self-stretch" style={{ letterSpacing: '0.01em' }}>
+              <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col items-center gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                <h2 className="text-base sm:text-lg font-medium text-[#353535] self-stretch" style={{ letterSpacing: '0.01em' }}>
                   Pricing
                 </h2>
                 
@@ -383,12 +558,12 @@ export default function ProductForm() {
               </div>
 
               {/* Inventory */}
-              <div className="bg-white rounded-xl p-6 flex flex-col items-center gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
-                <h2 className="text-lg font-medium text-[#353535] self-stretch" style={{ letterSpacing: '0.01em' }}>
+              <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col items-center gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                <h2 className="text-base sm:text-lg font-medium text-[#353535] self-stretch" style={{ letterSpacing: '0.01em' }}>
                   Inventory
                 </h2>
                 
-                <div className="grid grid-cols-2 gap-3.5 self-stretch">
+                <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-3.5 self-stretch">
                   <div className="flex flex-col gap-1">
                     <Label 
                       htmlFor="sku"
@@ -441,10 +616,10 @@ export default function ProductForm() {
             </div>
 
             {/* Right Column */}
-            <div className="w-[264px]">
+            <div className="w-full lg:w-[264px]">
               {/* Category */}
-              <div className="bg-white rounded-xl p-6 flex flex-col items-center gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
-                <h2 className="text-lg font-medium text-[#353535] self-stretch" style={{ letterSpacing: '0.01em' }}>
+              <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex flex-col items-center gap-3 sm:gap-3.5" style={{ boxShadow: '0px 4px 30px rgba(46, 45, 116, 0.05)' }}>
+                <h2 className="text-base sm:text-lg font-medium text-[#353535] self-stretch" style={{ letterSpacing: '0.01em' }}>
                   Category
                 </h2>
                 
@@ -457,6 +632,7 @@ export default function ProductForm() {
                     Product Category
                   </Label>
                   <Select 
+                    key={formData.category}
                     value={formData.category} 
                     onValueChange={(value) => handleChange('category', value)}
                   >

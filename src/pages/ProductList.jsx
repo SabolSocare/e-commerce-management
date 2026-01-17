@@ -162,15 +162,15 @@ export default function ProductList() {
   }
 
   return (
-    <div className="h-full flex flex-col bg-[#F9F9FC] p-6">
+    <div className="h-full flex flex-col bg-[#F9F9FC] p-3 sm:p-6">
       {/* Main Content Card */}
-      <div className="rounded-lg flex-1 flex flex-col gap-8 pb-8">
+      <div className="rounded-lg flex-1 flex flex-col gap-4 sm:gap-6 lg:gap-8 pb-4 sm:pb-8">
         {/* Toolbar */}
         <div className="bg-[#F9F9FC] rounded-lg ">
-          <div className="flex items-center justify-between mb-7 gap-8">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mb-4 sm:mb-7 gap-3 sm:gap-8">
             {/* Large Search Bar and Actions with space between */}
-            <div className="flex w-full items-center gap-8">
-              <div className="w-[1160px] bg-[#F9F9FC] gab-b-8">
+            <div className="flex flex-col sm:flex-row w-full items-stretch sm:items-center gap-3 sm:gap-4 lg:gap-8">
+              <div className="flex-1 max-w-full lg:max-w-[1160px] bg-[#F9F9FC]">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#858D9D] w-4 h-4 gap" />
                   <Input
@@ -183,12 +183,13 @@ export default function ProductList() {
                   />
                 </div>
               </div>
+              <div className="flex items-center gap-2 sm:gap-3">
               <Button 
                 variant="ghost" 
-                className="gap-1 h-10 w-[95px] px-3.5 py-2.5 bg-[#3A5BFF]/15 hover:bg-[#3A5BFF]/25 text-[#3A5BFF] rounded-lg flex-shrink-0"
+                className="gap-1 h-10 flex-1 sm:flex-none sm:w-[95px] px-2 sm:px-3.5 py-2.5 bg-[#3A5BFF]/15 hover:bg-[#3A5BFF]/25 text-[#3A5BFF] rounded-lg flex-shrink-0"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
               >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-5 sm:h-5">
                   <g clipPath="url(#clip0_16_1959)">
                     <path d="M8.58543 14.0813C9.36624 14.8627 10.6326 14.8631 11.4139 14.0822C11.4142 14.0819 11.4145 14.0817 11.4148 14.0813L13.5554 11.9407C13.8024 11.6676 13.7811 11.246 13.5081 10.9991C13.2538 10.7692 12.8666 10.7696 12.6128 11L10.6621 12.9513L10.6668 2.66669C10.6667 2.29847 10.3683 2 10.0001 2C9.6319 2 9.33343 2.29847 9.33343 2.66666L9.32743 12.9387L7.38743 11C7.12693 10.7397 6.70474 10.7398 6.44443 11.0003C6.18412 11.2608 6.18427 11.683 6.44477 11.9433L8.58543 14.0813Z" fill="#3A5BFF"/>
                     <path d="M17.3333 12.6666C16.9652 12.6666 16.6667 12.9651 16.6667 13.3333V16C16.6667 16.3682 16.3682 16.6666 16 16.6666H4C3.63181 16.6666 3.33334 16.3682 3.33334 16V13.3333C3.33334 12.9651 3.03487 12.6667 2.66669 12.6667C2.29847 12.6666 2 12.9651 2 13.3333V16C2 17.1045 2.89544 18 4 18H16C17.1046 18 18 17.1045 18 16V13.3333C18 12.9651 17.7015 12.6666 17.3333 12.6666Z" fill="#3A5BFF"/>
@@ -202,11 +203,11 @@ export default function ProductList() {
                 <span className="text-sm font-normal leading-5 tracking-[0.005em]">Export</span>
               </Button>
               <Button
-                className="flex items-center justify-center gap-1 h-10 w-[140px] px-3.5 py-2.5 bg-[#3A5BFF] hover:bg-[#3A5BFF]/90 text-white rounded-lg flex-shrink-0"
+                className="flex items-center justify-center gap-1 h-10 flex-1 sm:flex-none sm:w-[140px] px-2 sm:px-3.5 py-2.5 bg-[#3A5BFF] hover:bg-[#3A5BFF]/90 text-white rounded-lg flex-shrink-0"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
                 onClick={() => navigate('/products/add')}
               >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-5 sm:h-5">
                   <g clipPath="url(#clip0_16_1963)">
                     <path d="M17.3333 9.33333H10.6667V2.66667C10.6667 2.48986 10.5964 2.32029 10.4714 2.19526C10.3464 2.07024 10.1768 2 10 2V2C9.82319 2 9.65362 2.07024 9.5286 2.19526C9.40357 2.32029 9.33333 2.48986 9.33333 2.66667V9.33333H2.66667C2.48986 9.33333 2.32029 9.40357 2.19526 9.5286C2.07024 9.65362 2 9.82319 2 10V10C2 10.1768 2.07024 10.3464 2.19526 10.4714C2.32029 10.5964 2.48986 10.6667 2.66667 10.6667H9.33333V17.3333C9.33333 17.5101 9.40357 17.6797 9.5286 17.8047C9.65362 17.9298 9.82319 18 10 18C10.1768 18 10.3464 17.9298 10.4714 17.8047C10.5964 17.6797 10.6667 17.5101 10.6667 17.3333V10.6667H17.3333C17.5101 10.6667 17.6797 10.5964 17.8047 10.4714C17.9298 10.3464 18 10.1768 18 10C18 9.82319 17.9298 9.65362 17.8047 9.5286C17.6797 9.40357 17.5101 9.33333 17.3333 9.33333Z" fill="white"/>
                   </g>
@@ -216,67 +217,68 @@ export default function ProductList() {
                     </clipPath>
                   </defs>
                 </svg>
-                <span className="text-sm font-normal leading-5 tracking-[0.005em]">Add Product</span>
+                <span className="text-xs sm:text-sm font-normal leading-5 tracking-[0.005em]">Add Product</span>
               </Button>
+              </div>
             </div>
           </div>
 
           {/* Filters */}
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 lg:gap-4">
             {/* Tabs */}
-            <div className="flex items-center p-1 bg-[#F9F9FC] border border-[#E0E2E7] rounded-lg">
+            <div className="flex items-center p-1 bg-[#F9F9FC] border border-[#E0E2E7] rounded-lg overflow-x-auto">
               <button
                 onClick={() => setStatusFilter('all')}
                 className={cn(
-                  'flex items-center justify-center gap-2 px-3 py-1.5 w-[100px] h-8 rounded-[6px] font-normal text-[14px] leading-5 tracking-[0.005em] transition-colors',
+                  'flex items-center justify-center gap-2 px-2 sm:px-3 py-1.5 min-w-[80px] sm:w-[100px] h-8 rounded-[6px] font-normal text-[13px] sm:text-[14px] leading-5 tracking-[0.005em] transition-colors whitespace-nowrap',
                   statusFilter === 'all'
                     ? 'bg-[#3A5BFF]/15 text-[#3A5BFF] font-[Poppins]'
                     : 'text-[#6E7079] hover:bg-gray-50 font-[Poppins]'
                 )}
                 style={statusFilter === 'all' ? { fontFamily: 'Poppins, sans-serif', fontWeight: 400 } : { fontFamily: 'Poppins, sans-serif', fontWeight: 400 }}
               >
-                <span className="w-[76px] h-5">All Product</span>
+                <span className="h-5">All Product</span>
               </button>
               <button
                 onClick={() => setStatusFilter('published')}
                 className={cn(
-                  'flex items-center justify-center gap-2 px-3 py-1.5 w-[100px] h-8 rounded-[6px] font-normal text-[14px] leading-5 tracking-[0.005em] transition-colors',
+                  'flex items-center justify-center gap-2 px-2 sm:px-3 py-1.5 min-w-[80px] sm:w-[100px] h-8 rounded-[6px] font-normal text-[13px] sm:text-[14px] leading-5 tracking-[0.005em] transition-colors whitespace-nowrap',
                   statusFilter === 'published'
                     ? 'bg-[#3A5BFF]/15 text-[#3A5BFF] font-[Poppins]'
                     : 'text-[#6E7079] hover:bg-gray-50 font-[Poppins]'
                 )}
                 style={statusFilter === 'published' ? { fontFamily: 'Poppins, sans-serif', fontWeight: 400 } : { fontFamily: 'Poppins, sans-serif', fontWeight: 400 }}
               >
-                <span className="w-[76px] h-5">Published</span>
+                <span className="h-5">Published</span>
               </button>
               <button
                 onClick={() => setStatusFilter('lowstock')}
                 className={cn(
-                  'flex items-center justify-center gap-2 px-3 py-1.5 w-[100px] h-8 rounded-[6px] font-normal text-[14px] leading-5 tracking-[0.005em] transition-colors',
+                  'flex items-center justify-center gap-2 px-2 sm:px-3 py-1.5 min-w-[80px] sm:w-[100px] h-8 rounded-[6px] font-normal text-[13px] sm:text-[14px] leading-5 tracking-[0.005em] transition-colors whitespace-nowrap',
                   statusFilter === 'lowstock'
                     ? 'bg-[#3A5BFF]/15 text-[#3A5BFF] font-[Poppins]'
                     : 'text-[#6E7079] hover:bg-gray-50 font-[Poppins]'
                 )}
                 style={statusFilter === 'lowstock' ? { fontFamily: 'Poppins, sans-serif', fontWeight: 400 } : { fontFamily: 'Poppins, sans-serif', fontWeight: 400 }}
               >
-                <span className="w-[76px] h-5">Low Stock</span>
+                <span className="h-5">Low Stock</span>
               </button>
               <button
                 onClick={() => setStatusFilter('draft')}
                 className={cn(
-                  'flex items-center justify-center gap-2 px-3 py-1.5 w-[100px] h-8 rounded-[6px] font-normal text-[14px] leading-5 tracking-[0.005em] transition-colors',
+                  'flex items-center justify-center gap-2 px-2 sm:px-3 py-1.5 min-w-[80px] sm:w-[100px] h-8 rounded-[6px] font-normal text-[13px] sm:text-[14px] leading-5 tracking-[0.005em] transition-colors whitespace-nowrap',
                   statusFilter === 'draft'
                     ? 'bg-[#3A5BFF]/15 text-[#3A5BFF] font-[Poppins]'
                     : 'text-[#6E7079] hover:bg-gray-50 font-[Poppins]'
                 )}
                 style={statusFilter === 'draft' ? { fontFamily: 'Poppins, sans-serif', fontWeight: 400 } : { fontFamily: 'Poppins, sans-serif', fontWeight: 400 }}
               >
-                <span className="w-[76px] h-5">Draft</span>
+                <span className="h-5">Draft</span>
               </button>
             </div>
 
             {/* Filter Controls */}
-            <div className="flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#858D9D] w-4 h-4" />
                 <Input
@@ -330,13 +332,13 @@ export default function ProductList() {
           </div>
         </div>
 
-        {/* Table */}
+        {/* Table - Horizontally Scrollable on Mobile */}
         <div className="bg-white flex-1 flex flex-col overflow-hidden mb-6" style={{ borderRadius: '12px' }}>
-          <div className="flex-1 overflow-auto">
-          <table className="w-full">
+          <div className="flex-1 overflow-x-auto overflow-y-auto">
+          <table className="w-full min-w-[900px]">
             <thead className="bg-white sticky top-0">
               <tr className="border-b border-[#F0F1F3]">
-                <th className="px-[22px] py-[18px]" style={{ width: '350px', height: '56px' }}>
+                <th className="px-[22px] py-[18px]" style={{ width: '450px', height: '56px' }}>
                   <div className="flex flex-row items-center gap-2">
                     <button
                       onClick={handleSelectAll}
@@ -502,7 +504,7 @@ export default function ProductList() {
                       <div className="h-4 w-24 bg-gray-200 rounded"></div>
                     </td>
                     <td className="px-4 py-3 border-b border-gray-200">
-                      <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 whitespace-nowrap">
                         <div className="w-8 h-8 bg-gray-200 rounded"></div>
                         <div className="w-8 h-8 bg-gray-200 rounded"></div>
                       </div>
@@ -551,11 +553,11 @@ export default function ProductList() {
                             alt={product.title}
                             className="w-11 h-11 rounded-lg object-cover bg-[#E0E2E7]"
                           />
-                          <div className="flex flex-col gap-1">
-                            <div className="text-sm font-normal text-[#353535] tracking-[0.005em]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          <div className="flex flex-col gap-1 min-w-[250px]">
+                            <div className="text-sm font-normal text-[#353535] tracking-[0.005em] whitespace-nowrap" style={{ fontFamily: 'Poppins, sans-serif' }}>
                               {product.title}
                             </div>
-                            <div className="text-xs font-normal text-[#6E7079] tracking-[0.005em]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            <div className="text-xs font-normal text-[#6E7079] tracking-[0.005em] whitespace-nowrap" style={{ fontFamily: 'Poppins, sans-serif' }}>
                               {product.meta?.barcode || 'N/A'}
                             </div>
                           </div>
@@ -565,25 +567,25 @@ export default function ProductList() {
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <span className="text-sm text-blue-600">{product.sku || 'N/A'}</span>
+                        <span className="text-sm text-blue-600 whitespace-nowrap">{product.sku || 'N/A'}</span>
                       </td>
                       <td className={cn(
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <span className="text-sm text-gray-500 capitalize" style={{ fontFamily: 'Poppins, sans-serif' }}>{product.category}</span>
+                        <span className="text-sm text-gray-500 capitalize whitespace-nowrap" style={{ fontFamily: 'Poppins, sans-serif' }}>{product.category}</span>
                       </td>
                       <td className={cn(
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <span className="text-sm text-gray-500" style={{ fontFamily: 'Poppins, sans-serif' }}>{product.stock}</span>
+                        <span className="text-sm text-gray-500 whitespace-nowrap" style={{ fontFamily: 'Poppins, sans-serif' }}>{product.stock}</span>
                       </td>
                       <td className={cn(
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <span className="text-sm text-gray-500" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        <span className="text-sm text-gray-500 whitespace-nowrap" style={{ fontFamily: 'Poppins, sans-serif' }}>
                           {formatCurrency(product.price)}
                         </span>
                       </td>
@@ -591,7 +593,7 @@ export default function ProductList() {
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <span className="text-sm text-gray-500" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        <span className="text-sm text-gray-500 whitespace-nowrap" style={{ fontFamily: 'Poppins, sans-serif' }}>
                           {product.meta?.createdAt
                             ? formatDate(product.meta.createdAt)
                             : formatDate(new Date())}
@@ -601,7 +603,7 @@ export default function ProductList() {
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 whitespace-nowrap">
                           <Button
                             variant="ghost"
                             size="icon"
@@ -643,16 +645,16 @@ export default function ProductList() {
         </div>
 
         {/* Pagination */}
-        <div className="flex flex-row items-center px-6 py-[18px] gap-3 bg-white">
+        <div className="flex flex-col sm:flex-row items-center justify-between px-3 sm:px-6 py-3 sm:py-[18px] gap-3 bg-white rounded-lg">
           <div 
-            className="flex-grow text-sm font-normal text-[#667085]"
-            style={{ fontFamily: 'Poppins, sans-serif', fontSize: '14px', lineHeight: '20px', letterSpacing: '0.005em' }}
+            className="text-xs sm:text-sm font-normal text-[#667085] text-center sm:text-left"
+            style={{ fontFamily: 'Poppins, sans-serif', lineHeight: '20px', letterSpacing: '0.005em' }}
           >
             Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1} to{' '}
             {Math.min(currentPage * ITEMS_PER_PAGE, total)} from {total}
           </div>
 
-          <div className="flex flex-row items-start gap-2">
+          <div className="flex flex-row items-center gap-2">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
