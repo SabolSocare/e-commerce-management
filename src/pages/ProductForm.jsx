@@ -67,11 +67,16 @@ export default function ProductForm() {
       isEditMode 
         ? productApi.updateProduct(id, data)
         : productApi.addProduct(data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['products'] })
+    onSuccess: (response, variables) => {
+      // Use optimistic update: Update cache with OUR data, not API's modified data
       if (isEditMode) {
-        queryClient.invalidateQueries({ queryKey: ['product', id] })
+        queryClient.setQueryData(['product', id], (oldData) => ({
+          ...oldData,
+          ...variables, // Use the data we sent, not what API returned
+          id: id
+        }))
       }
+      queryClient.invalidateQueries({ queryKey: ['products'] })
       navigate('/products')
     },
   })
@@ -127,7 +132,7 @@ export default function ProductForm() {
       category: formData.category,
       price: Number(formData.price),
       sku: formData.sku,
-      stock: Number(formData.stock),
+      stock: parseInt(formData.stock, 10), // Use parseInt for whole numbers
     }
 
     if (formData.discountPercentage) {
@@ -522,7 +527,6 @@ export default function ProductForm() {
                         className={`h-10 pl-9 bg-[#F9F9FC] border-[#E0E2E7] text-sm placeholder:text-[#858D9D] ${
                           errors.price ? 'border-red-500' : ''
                         }`}
-                        step="0.01"
                       />
                     </div>
                     {errors.price && (
@@ -548,7 +552,6 @@ export default function ProductForm() {
                         errors.discountPercentage ? 'border-red-500' : ''
                       }`}
                       style={{ letterSpacing: '0.005em' }}
-                      step="0.01"
                     />
                     {errors.discountPercentage && (
                       <p className="text-sm text-red-500 mt-1">{errors.discountPercentage}</p>
