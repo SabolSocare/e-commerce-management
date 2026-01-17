@@ -152,26 +152,64 @@ export default function ProductForm() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
-            <Button
+            <button
               type="button"
-              variant="outline"
               onClick={handleCancel}
               disabled={mutation.isPending}
-              className="w-[calc(50%-4px)] sm:flex-1 md:flex-none md:min-w-[99px] h-9"
+              className="flex items-center justify-center gap-2 w-[99px] h-10 border border-[#858D9D] rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
             >
-              Cancel
-            </Button>
-            <Button
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clipPath="url(#clip0_16_4738)">
+                  <path d="M10.9425 9.99999L17.8045 3.13799C17.926 3.01225 17.9932 2.84385 17.9916 2.66905C17.9901 2.49425 17.92 2.32705 17.7964 2.20344C17.6728 2.07984 17.5056 2.00972 17.3308 2.0082C17.156 2.00668 16.9876 2.07388 16.8619 2.19532L9.99986 9.05732L3.13786 2.19532C3.01212 2.07388 2.84372 2.00668 2.66892 2.0082C2.49413 2.00972 2.32692 2.07984 2.20331 2.20344C2.07971 2.32705 2.00959 2.49425 2.00807 2.66905C2.00656 2.84385 2.07375 3.01225 2.19519 3.13799L9.05719 9.99999L2.19519 16.862C2.07021 16.987 2 17.1565 2 17.3333C2 17.5101 2.07021 17.6796 2.19519 17.8047C2.32021 17.9296 2.48975 17.9998 2.66652 17.9998C2.8433 17.9998 3.01284 17.9296 3.13786 17.8047L9.99986 10.9427L16.8619 17.8047C16.9869 17.9296 17.1564 17.9998 17.3332 17.9998C17.51 17.9998 17.6795 17.9296 17.8045 17.8047C17.9295 17.6796 17.9997 17.5101 17.9997 17.3333C17.9997 17.1565 17.9295 16.987 17.8045 16.862L10.9425 9.99999Z" fill="#858D9D"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_16_4738">
+                    <rect width="16" height="16" fill="white" transform="translate(2 2)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+              <span className="font-['Poppins'] text-sm leading-5 tracking-[0.005em] text-[#858D9D]">
+                Cancel
+              </span>
+            </button>
+            <button
               type="submit"
               form="product-form"
               disabled={mutation.isPending}
-              className="w-[calc(50%-4px)] sm:flex-1 md:flex-none md:min-w-[146px] h-9"
+              className="flex items-center justify-center gap-2 w-[135px] h-10 bg-[#3A5BFF] rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
             >
-              {mutation.isPending 
-                ? (isEditMode ? 'Saving...' : 'Adding...') 
-                : (isEditMode ? 'Save Product' : 'Add Product')
-              }
-            </Button>
+              {isEditMode ? (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clipPath="url(#clip0_16_6564)">
+                    <path d="M10.0001 12.6667C10.7365 12.6667 11.3334 12.0697 11.3334 11.3333C11.3334 10.597 10.7365 10 10.0001 10C9.26371 10 8.66675 10.597 8.66675 11.3333C8.66675 12.0697 9.26371 12.6667 10.0001 12.6667Z" fill="white"/>
+                    <path d="M17.024 4.748L15.252 2.976C15.0747 2.80147 14.8783 2.64741 14.6667 2.51666V4C14.6644 5.84003 13.1733 7.33113 11.3333 7.33334H8.66666C6.82662 7.33113 5.33553 5.84003 5.33334 4V2C3.49331 2.00222 2.00222 3.49331 2 5.33334V14.6667C2.00222 16.5067 3.49331 17.9978 5.33334 18H14.6667C16.5067 17.9978 17.9978 16.5067 18 14.6667V7.10469C18.0025 6.22028 17.651 5.37166 17.024 4.748ZM10 14C8.52725 14 7.33334 12.8061 7.33334 11.3333C7.33334 9.86059 8.52725 8.66669 10 8.66669C11.4727 8.66669 12.6667 9.86059 12.6667 11.3333C12.6667 12.8061 11.4727 14 10 14Z" fill="white"/>
+                    <path d="M8.66675 5.99997H11.3334C12.438 5.99997 13.3334 5.10453 13.3334 3.99997V2.04266C13.1885 2.01903 13.0421 2.00478 12.8954 2H6.66675V4C6.66675 5.10453 7.56218 5.99997 8.66675 5.99997Z" fill="white"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_16_6564">
+                      <rect width="16" height="16" fill="white" transform="translate(2 2)"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clipPath="url(#clip0_16_4743)">
+                    <path d="M15.3333 7.33334H8.66666V0.666656C8.66666 0.298469 8.36819 0 8 0C7.63181 0 7.33334 0.298469 7.33334 0.666656V7.33331H0.666656C0.298469 7.33334 0 7.63181 0 8C0 8.36819 0.298469 8.66666 0.666656 8.66666H7.33331V15.3333C7.33331 15.7015 7.63178 16 7.99997 16C8.36816 16 8.66662 15.7015 8.66662 15.3333V8.66666H15.3333C15.7015 8.66666 15.9999 8.36819 15.9999 8C16 7.63181 15.7015 7.33334 15.3333 7.33334Z" fill="white"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_16_4743">
+                      <rect width="16" height="16" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              )}
+              <span className="font-['Poppins'] text-sm leading-5 tracking-[0.005em] text-white">
+                {mutation.isPending 
+                  ? 'Saving...' 
+                  : (isEditMode ? 'Save Product' : 'Add Product')
+                }
+              </span>
+            </button>
           </div>
         </div>
       </div>
