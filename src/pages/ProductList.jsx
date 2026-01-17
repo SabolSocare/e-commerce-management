@@ -305,7 +305,7 @@ export default function ProductList() {
                     </defs>
                   </svg>
                 </span>
-                <span className="text-sm font-normal leading-5 tracking-[0.005em]" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 400, color: '#858D9D', width: '81px', height: '20px' }}>Select Date</span>
+                <span className="text-sm font-normal leading-5 tracking-[0.005em]" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 400, color: '#858D9D' }}>Select Date</span>
               </Button>
               <Button 
                 variant="outline" 
@@ -326,7 +326,7 @@ export default function ProductList() {
                     </defs>
                   </svg>
                 </span>
-                <span className="text-sm font-normal leading-5 tracking-[0.005em]" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 400, color: '#667085', width: '41px', height: '20px' }}>Filters</span>
+                <span className="text-sm font-normal leading-5 tracking-[0.005em]" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 400, color: '#667085' }}>Filters</span>
               </Button>
             </div>
           </div>
@@ -338,7 +338,7 @@ export default function ProductList() {
           <table className="w-full min-w-[900px]">
             <thead className="bg-white sticky top-0">
               <tr className="border-b border-[#F0F1F3]">
-                <th className="px-[22px] py-[18px]" style={{ width: '450px', height: '56px' }}>
+                <th className="px-[22px] py-[18px]" style={{ minWidth: '350px' }}>
                   <div className="flex flex-row items-center gap-2">
                     <button
                       onClick={handleSelectAll}
@@ -386,17 +386,17 @@ export default function ProductList() {
                     </button>
                   </div>
                 </th>
-                <th className="px-[22px] py-[18px]" style={{ width: '220px', minHeight: '56px', textAlign: 'left' }}>
+                <th className="px-[22px] py-[18px] text-left">
                   <span className="flex-grow text-left font-medium text-sm leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       SKU
                     </span>
                 </th>
-                <th className="px-[22px] py-[18px]" style={{ width: '180px', minHeight: '56px', textAlign: 'left' }}>
+                <th className="px-[22px] py-[18px] text-left">
                   <span className="flex-grow text-left font-medium text-sm leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>
                       Category
                     </span>
                 </th>
-                <th className="px-[22px] py-[18px]" style={{ width: '225px', minHeight: '56px', textAlign: 'left' }}>
+                <th className="px-[22px] py-[18px] text-left">
                   <div className="flex flex-row items-center gap-2">
                     <span className="flex-grow text-left font-medium text-sm leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>Stock</span>
                     <button
@@ -420,7 +420,7 @@ export default function ProductList() {
                     </button>
                   </div>
                 </th>
-                <th className="px-[22px] py-[18px]" style={{ width: '225px', minHeight: '56px', textAlign: 'left' }}>
+                <th className="px-[22px] py-[18px] text-left">
                   <div className="flex flex-row items-center gap-2">
                     <span className="flex-grow text-left font-medium text-sm leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>Price</span>
                     <button
@@ -444,7 +444,7 @@ export default function ProductList() {
                     </button>
                   </div>
                 </th>
-                <th className="px-[22px] py-[18px]" style={{ width: '130px', minHeight: '56px', textAlign: 'left' }}>
+                <th className="px-[22px] py-[18px] text-left">
                   <div className="flex flex-row items-center gap-2">
                     <span className="flex-grow text-left font-medium text-sm leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>Added</span>
                     <button
@@ -504,7 +504,7 @@ export default function ProductList() {
                       <div className="h-4 w-24 bg-gray-200 rounded"></div>
                     </td>
                     <td className="px-4 py-3 border-b border-gray-200">
-                        <div className="flex items-center gap-2 whitespace-nowrap">
+                        <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-gray-200 rounded"></div>
                         <div className="w-8 h-8 bg-gray-200 rounded"></div>
                       </div>
@@ -531,7 +531,7 @@ export default function ProductList() {
                       <td className={cn(
                         "px-[22px] py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
-                      )}>
+                      )} style={{ minWidth: '350px' }}>
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handleSelectProduct(product.id, !isSelected)}
@@ -553,7 +553,7 @@ export default function ProductList() {
                             alt={product.title}
                             className="w-11 h-11 rounded-lg object-cover bg-[#E0E2E7]"
                           />
-                          <div className="flex flex-col gap-1 min-w-[250px]">
+                          <div className="flex flex-col gap-1">
                             <div className="text-sm font-normal text-[#353535] tracking-[0.005em] whitespace-nowrap" style={{ fontFamily: 'Poppins, sans-serif' }}>
                               {product.title}
                             </div>
@@ -603,7 +603,7 @@ export default function ProductList() {
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <div className="flex items-center gap-2 whitespace-nowrap">
+                        <div className="flex items-center gap-2">
                           <Button
                             variant="ghost"
                             size="icon"

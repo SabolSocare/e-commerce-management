@@ -80,9 +80,9 @@ export default function Sidebar({ isOpen = false, onClose }) {
           </svg>
         </button>
       {/* Logo */}
-      <div className="h-16 relative border-b border-blue-600">
-        <div className="absolute left-[45px] top-[30px] w-[88px] h-[30px] flex items-center gap-2">
-          <div className="w-[30px] h-[30px] rounded-full border-[8px] border-white bg-[#4169E1]"></div>
+      <div className="h-16 flex items-center px-8 border-b border-blue-600">
+        <div className="flex items-center gap-2">
+          <div className="w-[30px] h-[30px] rounded-full border-[8px] border-white bg-[#4169E1] flex-shrink-0"></div>
           <span className="text-[20px] font-medium leading-[1.02]">Logo</span>
         </div>
       </div>
