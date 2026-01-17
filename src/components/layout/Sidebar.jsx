@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { Package, ShoppingCart, Users, FileText } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -60,7 +60,7 @@ const navigation = [
 ]
 
 export default function Sidebar() {
-  const [activeIdx, setActiveIdx] = useState(null)
+  const location = useLocation()
   
   return (
     <div className="w-[280px] bg-[#3A5BFF] text-white flex flex-col">
@@ -76,7 +76,8 @@ export default function Sidebar() {
       <nav className="flex-1 py-4">
         {navigation.map((item, idx) => {
           const Icon = item.icon
-          const isActive = activeIdx === idx
+          // Check if current location matches this nav item
+          const isActive = location.pathname.startsWith(item.href)
           
           // Icon size per Figma: Dashboard/Product/Order/Customer/Reports
           const iconSizes = [
@@ -91,9 +92,6 @@ export default function Sidebar() {
             <NavLink
               key={item.name}
               to={item.href}
-              onClick={() => {
-                setActiveIdx(idx)
-              }}
               className={cn(
                 'relative flex items-center w-[280px] h-[72px] pl-[45px] text-[14px] font-medium transition-all',
                 isActive ? 'text-white' : 'text-[#C2C0FF]',

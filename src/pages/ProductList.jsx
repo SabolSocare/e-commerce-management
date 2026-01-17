@@ -43,7 +43,8 @@ export default function ProductList() {
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [deleteDialog, setDeleteDialog] = useState({ open: false, productId: null })
-  const [sortOrder, setSortOrder] = useState('asc')
+  // sortOrder: { key: 'product' | 'stock' | 'price' | 'added', direction: 'asc' | 'desc' }
+  const [sortOrder, setSortOrder] = useState({ key: 'product', direction: 'asc' })
 
   // Fetch products
   const { data, isLoading, isError } = useQuery({
@@ -118,13 +119,28 @@ export default function ProductList() {
           key={i}
           onClick={() => handlePageChange(i)}
           className={cn(
-            'w-8 h-8 rounded flex items-center justify-center text-sm font-medium',
+            'w-8 h-8 rounded-lg flex items-center justify-center text-sm font-normal',
             currentPage === i
-              ? 'bg-[#4169E1] text-white'
-              : 'text-gray-700 hover:bg-gray-100'
+              ? 'bg-[#3A5BFF] text-white'
+              : 'bg-[#3A5BFF]/15 text-[#3A5BFF] hover:bg-[#3A5BFF]/25'
           )}
+          style={{ fontFamily: 'Poppins, sans-serif', fontSize: '14px', lineHeight: '20px', letterSpacing: '0.005em' }}
         >
           {i}
+        </button>
+      )
+    }
+
+    // Add ellipsis if there are more pages
+    if (endPage < totalPages) {
+      pages.push(
+        <button
+          key="ellipsis"
+          disabled
+          className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-normal bg-[#3A5BFF]/15 text-[#3A5BFF]"
+          style={{ fontFamily: 'Poppins, sans-serif', fontSize: '14px', lineHeight: '20px', letterSpacing: '0.005em' }}
+        >
+          ...
         </button>
       )
     }
@@ -146,9 +162,9 @@ export default function ProductList() {
   }
 
   return (
-    <div className="h-full flex flex-col bg-[#F9F9FC]">
+    <div className="h-full flex flex-col bg-[#F9F9FC] p-6">
       {/* Main Content Card */}
-      <div className="rounded-lg flex-1 flex flex-col gap-8">
+      <div className="rounded-lg flex-1 flex flex-col gap-8 pb-8">
         {/* Toolbar */}
         <div className="bg-[#F9F9FC] rounded-lg ">
           <div className="flex items-center justify-between mb-7 gap-8">
@@ -315,12 +331,12 @@ export default function ProductList() {
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg flex-1 flex flex-col overflow-hidden">
+        <div className="bg-white flex-1 flex flex-col overflow-hidden mb-6" style={{ borderRadius: '12px' }}>
           <div className="flex-1 overflow-auto">
           <table className="w-full">
             <thead className="bg-white sticky top-0">
               <tr className="border-b border-[#F0F1F3]">
-                <th className="px-[22px] py-[18px]" style={{ width: '283px', height: '56px' }}>
+                <th className="px-[22px] py-[18px]" style={{ width: '350px', height: '56px' }}>
                   <div className="flex flex-row items-center gap-2">
                     <button
                       onClick={handleSelectAll}
@@ -368,33 +384,131 @@ export default function ProductList() {
                     </button>
                   </div>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  SKU
+                <th className="px-[22px] py-[18px]" style={{ width: '220px', minHeight: '56px', textAlign: 'left' }}>
+                  <span className="flex-grow text-left font-medium text-sm leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      SKU
+                    </span>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Category
+                <th className="px-[22px] py-[18px]" style={{ width: '180px', minHeight: '56px', textAlign: 'left' }}>
+                  <span className="flex-grow text-left font-medium text-sm leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      Category
+                    </span>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Stock
+                <th className="px-[22px] py-[18px]" style={{ width: '225px', minHeight: '56px', textAlign: 'left' }}>
+                  <div className="flex flex-row items-center gap-2">
+                    <span className="flex-grow text-left font-medium text-sm leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>Stock</span>
+                    <button
+                      onClick={() => setSortOrder({ key: 'stock', direction: sortOrder.key === 'stock' && sortOrder.direction === 'asc' ? 'desc' : 'asc' })}
+                      className="flex-shrink-0"
+                      aria-label="Sort by Stock"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style={{
+                          transform: sortOrder.key === 'stock' && sortOrder.direction === 'desc' ? 'rotate(180deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.2s ease'
+                        }}
+                      >
+                        <path d="M4.27602 6H11.724C11.8559 6.00003 11.9847 6.03914 12.0943 6.1124C12.2039 6.18565 12.2894 6.28976 12.3398 6.41156C12.3903 6.53336 12.4035 6.66738 12.3777 6.79669C12.352 6.92599 12.2886 7.04476 12.1954 7.138L8.47135 10.862C8.34634 10.987 8.1768 11.0572 8.00002 11.0572C7.82325 11.0572 7.65371 10.987 7.52869 10.862L3.80469 7.138C3.71148 7.04476 3.64801 6.92599 3.6223 6.79669C3.59659 6.66738 3.60979 6.53336 3.66024 6.41156C3.71068 6.28976 3.79611 6.18565 3.90572 6.1124C4.01532 6.03914 4.14419 6.00003 4.27602 6Z" fill="#A3A9B6"/>
+                      </svg>
+                    </button>
+                  </div>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Price
+                <th className="px-[22px] py-[18px]" style={{ width: '225px', minHeight: '56px', textAlign: 'left' }}>
+                  <div className="flex flex-row items-center gap-2">
+                    <span className="flex-grow text-left font-medium text-sm leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>Price</span>
+                    <button
+                      onClick={() => setSortOrder({ key: 'price', direction: sortOrder.key === 'price' && sortOrder.direction === 'asc' ? 'desc' : 'asc' })}
+                      className="flex-shrink-0"
+                      aria-label="Sort by Price"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style={{
+                          transform: sortOrder.key === 'price' && sortOrder.direction === 'desc' ? 'rotate(180deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.2s ease'
+                        }}
+                      >
+                        <path d="M4.27602 6H11.724C11.8559 6.00003 11.9847 6.03914 12.0943 6.1124C12.2039 6.18565 12.2894 6.28976 12.3398 6.41156C12.3903 6.53336 12.4035 6.66738 12.3777 6.79669C12.352 6.92599 12.2886 7.04476 12.1954 7.138L8.47135 10.862C8.34634 10.987 8.1768 11.0572 8.00002 11.0572C7.82325 11.0572 7.65371 10.987 7.52869 10.862L3.80469 7.138C3.71148 7.04476 3.64801 6.92599 3.6223 6.79669C3.59659 6.66738 3.60979 6.53336 3.66024 6.41156C3.71068 6.28976 3.79611 6.18565 3.90572 6.1124C4.01532 6.03914 4.14419 6.00003 4.27602 6Z" fill="#A3A9B6"/>
+                      </svg>
+                    </button>
+                  </div>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Added
+                <th className="px-[22px] py-[18px]" style={{ width: '130px', minHeight: '56px', textAlign: 'left' }}>
+                  <div className="flex flex-row items-center gap-2">
+                    <span className="flex-grow text-left font-medium text-sm leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>Added</span>
+                    <button
+                      onClick={() => setSortOrder({ key: 'added', direction: sortOrder.key === 'added' && sortOrder.direction === 'asc' ? 'desc' : 'asc' })}
+                      className="flex-shrink-0"
+                      aria-label="Sort by Added"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style={{
+                          transform: sortOrder.key === 'added' && sortOrder.direction === 'desc' ? 'rotate(180deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.2s ease'
+                        }}
+                      >
+                        <path d="M4.27602 6H11.724C11.8559 6.00003 11.9847 6.03914 12.0943 6.1124C12.2039 6.18565 12.2894 6.28976 12.3398 6.41156C12.3903 6.53336 12.4035 6.66738 12.3777 6.79669C12.352 6.92599 12.2886 7.04476 12.1954 7.138L8.47135 10.862C8.34634 10.987 8.1768 11.0572 8.00002 11.0572C7.82325 11.0572 7.65371 10.987 7.52869 10.862L3.80469 7.138C3.71148 7.04476 3.64801 6.92599 3.6223 6.79669C3.59659 6.66738 3.60979 6.53336 3.66024 6.41156C3.71068 6.28976 3.79611 6.18565 3.90572 6.1124C4.01532 6.03914 4.14419 6.00003 4.27602 6Z" fill="#A3A9B6"/>
+                      </svg>
+                    </button>
+                  </div>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Action
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 tracking-wider">
+                  <span className="text-sm font-medium leading-5 tracking-[0.005em] text-[#353535]" style={{ fontFamily: 'Poppins, sans-serif' }}>Action</span>
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {isLoading ? (
-                <tr>
-                  <td colSpan="7" className="px-4 py-8 text-center text-gray-500">
-                    Loading...
-                  </td>
-                </tr>
+                // Skeleton loading rows
+                Array.from({ length: ITEMS_PER_PAGE }).map((_, index) => (
+                  <tr key={`skeleton-${index}`} className="animate-pulse">
+                    <td className="px-[22px] py-3 border-b border-gray-200">
+                      <div className="flex items-center gap-2">
+                        <div className="w-5 h-5 bg-gray-200 rounded"></div>
+                        <div className="w-11 h-11 bg-gray-200 rounded-lg"></div>
+                        <div className="flex flex-col gap-2">
+                          <div className="h-4 w-32 bg-gray-200 rounded"></div>
+                          <div className="h-3 w-24 bg-gray-200 rounded"></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-3 border-b border-gray-200">
+                      <div className="h-4 w-20 bg-gray-200 rounded"></div>
+                    </td>
+                    <td className="px-4 py-3 border-b border-gray-200">
+                      <div className="h-4 w-24 bg-gray-200 rounded"></div>
+                    </td>
+                    <td className="px-4 py-3 border-b border-gray-200">
+                      <div className="h-4 w-12 bg-gray-200 rounded"></div>
+                    </td>
+                    <td className="px-4 py-3 border-b border-gray-200">
+                      <div className="h-4 w-20 bg-gray-200 rounded"></div>
+                    </td>
+                    <td className="px-4 py-3 border-b border-gray-200">
+                      <div className="h-4 w-24 bg-gray-200 rounded"></div>
+                    </td>
+                    <td className="px-4 py-3 border-b border-gray-200">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 bg-gray-200 rounded"></div>
+                        <div className="w-8 h-8 bg-gray-200 rounded"></div>
+                      </div>
+                    </td>
+                  </tr>
+                ))
               ) : products.length === 0 ? (
                 <tr>
                   <td colSpan="7" className="px-4 py-8 text-center text-gray-500">
@@ -457,19 +571,19 @@ export default function ProductList() {
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <span className="text-sm text-gray-900 capitalize">{product.category}</span>
+                        <span className="text-sm text-gray-500 capitalize" style={{ fontFamily: 'Poppins, sans-serif' }}>{product.category}</span>
                       </td>
                       <td className={cn(
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <span className="text-sm text-gray-900">{product.stock}</span>
+                        <span className="text-sm text-gray-500" style={{ fontFamily: 'Poppins, sans-serif' }}>{product.stock}</span>
                       </td>
                       <td className={cn(
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <span className="text-sm font-medium text-gray-900">
+                        <span className="text-sm text-gray-500" style={{ fontFamily: 'Poppins, sans-serif' }}>
                           {formatCurrency(product.price)}
                         </span>
                       </td>
@@ -477,7 +591,7 @@ export default function ProductList() {
                         "px-4 py-3 border-b",
                         isSelected ? "border-[#F0F1F3] bg-[#F9F9FC]" : "border-gray-200"
                       )}>
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-gray-500" style={{ fontFamily: 'Poppins, sans-serif' }}>
                           {product.meta?.createdAt
                             ? formatDate(product.meta.createdAt)
                             : formatDate(new Date())}
@@ -494,7 +608,18 @@ export default function ProductList() {
                             className="h-8 w-8"
                             onClick={() => navigate(`/products/edit/${product.id}`)}
                           >
-                            <Edit2 className="w-4 h-4 text-gray-500" />
+                            {/* Custom Edit Icon */}
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g clipPath="url(#clip0_16_2321)">
+                                <path d="M0.781333 12.7458C0.281202 13.2458 0.000151033 13.9239 0 14.6311L0 15.9998H1.36867C2.07585 15.9996 2.75402 15.7186 3.254 15.2184L12.1493 6.32313L9.67667 3.85046L0.781333 12.7458Z" fill="#A3A9B6"/>
+                                <path d="M15.4299 0.570117C15.2675 0.407607 15.0747 0.278687 14.8626 0.190728C14.6504 0.102769 14.4229 0.0574951 14.1932 0.0574951C13.9635 0.0574951 13.736 0.102769 13.5239 0.190728C13.3117 0.278687 13.1189 0.407607 12.9565 0.570117L10.6192 2.90812L13.0919 5.38078L15.4299 3.04345C15.5924 2.88111 15.7213 2.68833 15.8093 2.47614C15.8972 2.26394 15.9425 2.03649 15.9425 1.80678C15.9425 1.57708 15.8972 1.34963 15.8093 1.13743C15.7213 0.925236 15.5924 0.732457 15.4299 0.570117V0.570117Z" fill="#A3A9B6"/>
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_16_2321">
+                                  <rect width="16" height="16" fill="white"/>
+                                </clipPath>
+                              </defs>
+                            </svg>
                           </Button>
                           <Button
                             variant="ghost"
@@ -502,7 +627,10 @@ export default function ProductList() {
                             className="h-8 w-8"
                             onClick={() => handleDelete(product.id)}
                           >
-                            <Trash2 className="w-4 h-4 text-gray-500" />
+                            {/* Custom Delete Icon */}
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M14 2.66666H11.9334C11.6144 1.11572 10.2501 0.002 8.66669 0H7.33334C5.74994 0.002 4.38562 1.11572 4.06669 2.66666H2.00003C1.63184 2.66666 1.33337 2.96513 1.33337 3.33331C1.33337 3.7015 1.63184 4 2.00003 4H2.66669V12.6667C2.66891 14.5067 4.16 15.9978 6.00003 16H10C11.8401 15.9978 13.3312 14.5067 13.3334 12.6667V4H14C14.3682 4 14.6667 3.70153 14.6667 3.33334C14.6667 2.96516 14.3682 2.66666 14 2.66666ZM7.33337 11.3333C7.33337 11.7015 7.0349 12 6.66672 12C6.2985 12 6.00003 11.7015 6.00003 11.3333V7.33334C6.00003 6.96516 6.2985 6.66669 6.66669 6.66669C7.03487 6.66669 7.33334 6.96516 7.33334 7.33334V11.3333H7.33337ZM10 11.3333C10 11.7015 9.70156 12 9.33337 12C8.96519 12 8.66672 11.7015 8.66672 11.3333V7.33334C8.66672 6.96516 8.96519 6.66669 9.33337 6.66669C9.70156 6.66669 10 6.96516 10 7.33334V11.3333ZM5.44737 2.66666C5.73094 1.86819 6.48606 1.33434 7.33337 1.33331H8.66672C9.51403 1.33434 10.2692 1.86819 10.5527 2.66666H5.44737Z" fill="#A3A9B6"/>
+                            </svg>
                           </Button>
                         </div>
                       </td>
@@ -515,19 +643,24 @@ export default function ProductList() {
         </div>
 
         {/* Pagination */}
-        <div className="px-4 py-3 border-gray-200 flex items-center justify-between">
-          <div className="text-sm text-gray-700">
+        <div className="flex flex-row items-center px-6 py-[18px] gap-3 bg-white">
+          <div 
+            className="flex-grow text-sm font-normal text-[#667085]"
+            style={{ fontFamily: 'Poppins, sans-serif', fontSize: '14px', lineHeight: '20px', letterSpacing: '0.005em' }}
+          >
             Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1} to{' '}
             {Math.min(currentPage * ITEMS_PER_PAGE, total)} from {total}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-row items-start gap-2">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="w-8 h-8 rounded flex items-center justify-center text-gray-700 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#3A5BFF]/15 hover:bg-[#3A5BFF]/25 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.86 14.3933L7.14003 10.6666C7.01586 10.5417 6.94617 10.3727 6.94617 10.1966C6.94617 10.0205 7.01586 9.85152 7.14003 9.72661L10.86 5.99994C10.9533 5.90593 11.0724 5.84181 11.2022 5.81576C11.3321 5.78971 11.4667 5.80292 11.589 5.8537C11.7113 5.90448 11.8157 5.99052 11.8889 6.10087C11.9621 6.21122 12.0008 6.34086 12 6.47328V13.9199C12.0008 14.0524 11.9621 14.182 11.8889 14.2924C11.8157 14.4027 11.7113 14.4887 11.589 14.5395C11.4667 14.5903 11.3321 14.6035 11.2022 14.5775C11.0724 14.5514 10.9533 14.4873 10.86 14.3933Z" fill="#3A5BFF"/>
+              </svg>
             </button>
 
             {renderPagination()}
@@ -535,9 +668,11 @@ export default function ProductList() {
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="w-8 h-8 rounded flex items-center justify-center text-gray-700 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#3A5BFF]/15 hover:bg-[#3A5BFF]/25 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <ChevronRight className="w-4 h-4" />
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(180deg)' }}>
+                <path d="M10.86 14.3933L7.14003 10.6666C7.01586 10.5417 6.94617 10.3727 6.94617 10.1966C6.94617 10.0205 7.01586 9.85152 7.14003 9.72661L10.86 5.99994C10.9533 5.90593 11.0724 5.84181 11.2022 5.81576C11.3321 5.78971 11.4667 5.80292 11.589 5.8537C11.7113 5.90448 11.8157 5.99052 11.8889 6.10087C11.9621 6.21122 12.0008 6.34086 12 6.47328V13.9199C12.0008 14.0524 11.9621 14.182 11.8889 14.2924C11.8157 14.4027 11.7113 14.4887 11.589 14.5395C11.4667 14.5903 11.3321 14.6035 11.2022 14.5775C11.0724 14.5514 10.9533 14.4873 10.86 14.3933Z" fill="#3A5BFF"/>
+              </svg>
             </button>
           </div>
         </div>
