@@ -88,7 +88,7 @@ export default function Sidebar({ isOpen = false, onClose }) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 py-4">
+      <nav className="flex-1 py-4 mt-8">
         {navigation.map((item, idx) => {
           const Icon = item.icon
           // Check if current location matches this nav item
